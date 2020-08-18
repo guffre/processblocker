@@ -17,7 +17,7 @@ VOID LogData(int argc, char *argv[]);
 
 void __cdecl main(int argc, char *argv[]) 
 {
-    LPSTR IMAGE_KEY;
+    LPSTR IMAGE_KEY = NULL;
     DWORD keysize;
     // If there are two arguments and the second argument is valid (contains ".exe")
     if (argc == 3 && strstr(argv[2], ".exe")) {
@@ -66,8 +66,8 @@ void __cdecl main(int argc, char *argv[])
 
 BOOL CreateKey(LPCSTR IMAGE_KEY) {
     BOOL success;
-    HKEY hKey;
     DWORD err;
+    HKEY hKey = NULL;
 
     success = FALSE;
     if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, IMAGE_KEY, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL) == ERROR_SUCCESS)
